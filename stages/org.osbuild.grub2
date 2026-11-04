@@ -13,6 +13,7 @@ import osbuild.api
 #   - $ignition: configuration for ignition, if support for ignition
 #     is enabled
 GRUB_CFG_TEMPLATE = """
+set timeout_style=${timeout_style}
 set timeout=${timeout}
 
 # load the grubenv file
@@ -218,6 +219,7 @@ class GrubConfig:
         # configuration options for the main template
         config = {
             "timeout": self.timeout,
+            "timeout_style": self.timeout_style or "menu",
             "search": type2opt[fs_type] + " " + fs_id,
             "features": features,
         }
